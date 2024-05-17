@@ -112,6 +112,42 @@
                 flex-direction: row;
             }
         }
+        .heart {
+            position: absolute;
+            width: 8px; /* 调整大小 */
+            height: 8px; /* 调整大小 */
+            background-color: red;
+            transform: rotate(45deg);
+            top: 6px; /* 调整位置 */
+            left: 6px; /* 调整位置 */
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            width: 8px; /* 调整大小 */
+            height: 8px; /* 调整大小 */
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -4px; /* 调整位置 */
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: -4px; /* 调整位置 */
+        }
+
+        /* 新增的父块样式，使子元素居中 */
+        .block {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -201,6 +237,11 @@
                         div.style.backgroundColor = block.color;
                         div.style.left = (block.x + x) * blockSize + 'px';
                         div.style.top = (block.y + y) * blockSize + 'px';
+
+                        const heart = document.createElement('div');
+                        heart.className = 'heart';
+                        div.appendChild(heart);
+
                         game.appendChild(div);
                     }
                 });
@@ -222,6 +263,11 @@
                         div.style.backgroundColor = block.color;
                         div.style.left = offsetX + x * nextBlockSize + 'px';
                         div.style.top = offsetY + y * nextBlockSize + 'px';
+
+                        const heart = document.createElement('div');
+                        heart.className = 'heart';
+                        div.appendChild(heart);
+
                         nextBlockContainer.appendChild(div);
                     }
                 });
